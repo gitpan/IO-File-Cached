@@ -1,0 +1,12 @@
+AUTHORS
+COPYING
+INSTALL
+IO-File-Cached.spec
+IO-File-Cached.spec.PL
+MANIFEST
+MANIFEST.SKIP
+Makefile.PL
+README
+lib/IO/File/Cached.pm
+rollingbuild.sh
+t/005Cached.t
