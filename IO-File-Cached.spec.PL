@@ -1,6 +1,6 @@
-# Copyright (C) 2001 Daniel Berrange <dan@berrange.com>
+# Copyright (C) 2001-2004 Daniel Berrange <dan@berrange.com>
 #
-# $Id: IO-File-Cached.spec.PL,v 1.2 2004/02/12 14:20:38 dan Exp $
+# $Id: IO-File-Cached.spec.PL,v 1.3 2004/04/01 19:11:23 dan Exp $
 
 use strict;
 
@@ -15,7 +15,6 @@ unless (do 'lib/IO/File/Cached.pm')
 local $/ = undef;
 $_ = <DATA>;
 s/\@VERSION\@/$IO::File::Cached::VERSION/g;
-s/\@RELEASE\@/$IO::File::Cached::RELEASE/g;
 
 open SPEC, ">$ARGV[0]" or die "$!";
 print SPEC $_;
@@ -25,30 +24,29 @@ __DATA__
 
 %define perlsitearch %(perl -e 'use Config; print $Config{installsitearch}')
 %define perlsitelib %(perl -e 'use Config; print $Config{installsitelib}')
-%define perlman1dir %(perl -e 'use Config; print $Config{installman1dir}')
-%define perlman3dir %(perl -e 'use Config; print $Config{installman3dir}')
+%define perlman1dir %(perl -e 'use Config; print "$Config{siteprefix}/man/man1"')
+%define perlman3dir %(perl -e 'use Config; print "$Config{siteprefix}/man/man3"')
 %define perlversion %(perl -e 'use Config; print $Config{version}')
 
+%define appname IO-File-Cached
+
 Summary: IO::File::Cached - On demand file caching
-Name: perl-IO-File-Cached
+Name: perl-%{appname}
 Version: @VERSION@
-Release: @RELEASE@
+Release: 1
 Copyright: GPL
 Group: Applications/Internet
-Source: %{name}-%{version}.tar.gz
-BuildRoot: /var/tmp/%{name}-%{version}-root
+Source: %{appname}-%{version}.tar.gz
+BuildRoot: /var/tmp/%{appname}-%{version}-root
 BuildArchitectures: noarch
-#Requires: perl >= %{perlversion}
-Requires: perl
+Requires: perl = %{perlversion}
 
 %description
-
 IO::File::Cached is a subclass of IO::Scalar that uses IO::File
 and Cache::Cache for load on demand caching of files.
  
 %prep
-%setup -q
-
+%setup -q -n %{appname}-%{version}
 
 %build
 perl Makefile.PL
@@ -57,8 +55,8 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make PREFIX=$RPM_BUILD_ROOT/usr INSTALLMAN3DIR=$RPM_BUILD_ROOT/usr/share/man/man3 install
-find $RPM_BUILD_ROOT/usr/lib/perl5 -name perllocal.pod -exec rm -f {} \;
+make PREFIX=$RPM_BUILD_ROOT/usr install
+find $RPM_BUILD_ROOT%{perlsitearch} -name perllocal.pod -exec rm -f {} \;
 
 
 %clean
@@ -72,3 +70,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc README
 %{perlman3dir}/*
 %{perlsitelib}/IO/File/Cached.pm
+%{perlsitearch}/auto/IO/File/Cached/

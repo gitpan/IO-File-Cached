@@ -18,7 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id: Cached.pm,v 1.3 2004/02/12 14:20:38 dan Exp $
+# $Id: Cached.pm,v 1.4 2004/04/01 19:11:23 dan Exp $
 
 =pod
 
@@ -66,8 +66,7 @@ use vars qw($VERSION $RELEASE @ISA);
 
 @ISA = qw(IO::Scalar);
 
-$VERSION = "1.0.0";
-$RELEASE = "1";
+$VERSION = "1.0.1";
 
 =item new(filename => $filename[, cache => $cache] );
 

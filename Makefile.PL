@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.1 2004/02/10 19:04:40 dan Exp $
+# $Id: Makefile.PL,v 1.2 2004/04/01 19:11:23 dan Exp $
 # -*- perl -*-
 
 use ExtUtils::MakeMaker;
@@ -6,7 +6,11 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
 	      NAME => "IO::File::Cached",
 	      VERSION_FROM => 'lib/IO/File/Cached.pm',
-
+	      AUTHOR => "Daniel P. Berrange (dan[at]berrange[dot]com)",
+              PREREQ_PM => {
+	        'IO::Scalar' => '0',
+		'Cache::Cache' => '0'
+	      },
 	      dist =>
 	      {
 	       COMPRESS => 'gzip --force --best',

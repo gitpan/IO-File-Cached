@@ -1,7 +1,7 @@
 AUTHORS
+CHANGES
 COPYING
 INSTALL
-IO-File-Cached.spec
 IO-File-Cached.spec.PL
 MANIFEST
 MANIFEST.SKIP
@@ -10,3 +10,4 @@ README
 lib/IO/File/Cached.pm
 rollingbuild.sh
 t/005Cached.t
+IO-File-Cached.spec

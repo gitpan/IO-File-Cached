@@ -1,14 +1,10 @@
-# $Id: 005Cached.t,v 1.1 2004/02/10 19:04:40 dan Exp $
+# $Id: 005Cached.t,v 1.2 2004/04/01 19:11:23 dan Exp $
 
 BEGIN { $| = 1; print "1..2\n"; }
 END { print "not ok 1\n" unless $loaded; }
 
 use IO::File::Cached;
 use Cache::MemoryCache;
-use Carp qw(confess);
-
-$SIG{__WARN__} = sub { confess "now"; };
-$SIG{__DIE__} = sub { confess "then"; };
 
 $loaded = 1;
 print "ok 1\n";

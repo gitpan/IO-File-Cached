@@ -1,0 +1,15 @@
+Change Log for IO::File::Cached
+===============================
+
+v1.0.1 (on 01-04-2004)
+----------------------
+
+ * Added missing PREREQ_PM entries to Makefile.PL
+ * Fix building of RPMs
+
+v1.0.0: (12-02-2004)
+--------------------
+
+ * Initial release.
+  
+  
